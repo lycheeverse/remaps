@@ -44,7 +44,7 @@ Here is the remap expression:
 ```
 lychee --remap 'example.com/((?!.html).)*$ example.com/$1/index.html' https://example.com/foo
 ```
-†
+
 This command will match URLs that do not contain a slash in the last segment of the path, implying they do not have a file extension like .html, and appends /index.html to the end of these URLs. Therefore, URLs like https://example.com/foo.html won't be affected by this command, as they already have .html at the end. But URLs like https://example.com/foo will be transformed to https://example.com/foo/index.html.
 
 #### Mapping from a file-system path to a deployed domain
