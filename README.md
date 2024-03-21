@@ -55,10 +55,10 @@ When testing a deployed website using links from pre-deployed files or a base re
 2. **URL Mapping**: Change the protocol and base domain components of the URL from `file://local/path` to `https://www.my-deployed-site.com` (or `http://`).
 
 ```
-lychee --base https://www.my-deployed-site.com  --remap '(.*).md $1.html' index.md
+lychee --base https://www.my-deployed-site.com  --remap '(.*)\.md $1.html' index.md
 ```
 
-This can be useful when working with github sites.
+This can be useful when working with github sites that are generated from markdown.
 
 The lychee documentation itself can be tested in this manner; from the root of the repo cloned from https://github.com/lycheeverse/lycheeverse.github.io, execute:
 
