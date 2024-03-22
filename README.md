@@ -63,10 +63,12 @@ This can be useful when working with github sites that are generated from markdo
 The lychee documentation itself can be tested in this manner; from the root of the repo cloned from https://github.com/lycheeverse/lycheeverse.github.io, execute:
 
 ```
-lychee --base https://lychee.cli.rs  --remap '(.*).md $1.html' src/content/docs/**.md*
+lychee --base https://lychee.cli.rs  --remap '(.*)\.md $1.html' --exclude-path src/content/docs/CONTRIBUTING.md "src/content/docs/**/*.mdx" "src/content/docs/**/*.md"
 ```
 
-Note that any URLs which intentionally end in `.md` will need to be excluded.
+Note that in this case we have:
+1. An `.md` file we exclude because we are intentionally linking to a `.md` file.
+2. Two path arguments because some repo files are `.md` and some are `.mdx`
 
 ## Contributing
 
