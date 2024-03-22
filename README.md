@@ -47,6 +47,29 @@ lychee --remap 'example.com/((?!.html).)*$ example.com/$1/index.html' https://ex
 
 This command will match URLs that do not contain a slash in the last segment of the path, implying they do not have a file extension like .html, and appends /index.html to the end of these URLs. Therefore, URLs like https://example.com/foo.html won't be affected by this command, as they already have .html at the end. But URLs like https://example.com/foo will be transformed to https://example.com/foo/index.html.
 
+#### Mapping from a file-system path to a deployed domain
+
+When testing a deployed website using links from pre-deployed files or a base repository, two key mappings are required:
+
+1. **File Extension Mapping**: Convert pre-deployed file extensions to post-deployed file extensions (e.g., .md to .html).
+2. **URL Mapping**: Change the protocol and base domain components of the URL from `file://local/path` to `https://www.my-deployed-site.com` (or `http://`).
+
+```
+lychee --base https://www.my-deployed-site.com  --remap '(.*)\.md $1.html' index.md
+```
+
+This can be useful when working with github sites that are generated from markdown.
+
+The lychee documentation itself can be tested in this manner; from the root of the repo cloned from https://github.com/lycheeverse/lycheeverse.github.io, execute:
+
+```
+lychee --base https://lychee.cli.rs  --remap '(.*)\.md $1.html' --exclude-path src/content/docs/CONTRIBUTING.md "src/content/docs/**/*.mdx" "src/content/docs/**/*.md"
+```
+
+Note that in this case we have:
+1. An `.md` file we exclude because we are intentionally linking to a `.md` file.
+2. Two path arguments because some repo files are `.md` and some are `.mdx`
+
 ## Contributing
 
 Please contribute your own remap expressions here! You can just edit this file and create a pull request.
